@@ -4,6 +4,8 @@ import { Datastore } from '../types/datastore'
 
 export const Overview = ({datastore, clickHandlerOverview}: Datastore[] | any) => {
     
+
+
     if(!datastore) return (<div>loading...</div>)
 
     return (
@@ -20,14 +22,32 @@ export const Overview = ({datastore, clickHandlerOverview}: Datastore[] | any) =
             </thead>
         <tbody>
 
-        {datastore.map((element:Datastore) => (
-            <tr key={element.id} onClick={clickHandlerOverview}>
-                <td>{element.Versand}</td>
-                <td>WHERE</td>
-                <td>{element.Einbaudatum}</td>
-                <td>{element.Kunde}</td>
-            </tr>
-        ))}
+        { datastore.map((element:Datastore, index: number) => {
+
+
+            if( element.locked === true ) {
+                return(
+                    <tr key={element.id} className="red-border red" onClick={e => clickHandlerOverview(e,element.id, index)}>
+                        <td>{element.Versand}</td>
+                        <td>WHERE</td>
+                        <td>{element.Einbaudatum}</td>
+                        <td>{element.Kunde}</td>
+                    </tr>
+                )
+            } else {
+                return(
+                    <tr key={element.id} onClick={e => clickHandlerOverview(e,element.id, index)}>
+                        <td>{element.Versand}</td>
+                        <td>WHERE</td>
+                        <td>{element.Einbaudatum}</td>
+                        <td>{element.Kunde}</td>
+                    </tr>
+                )
+            }
+
+            
+        }
+        )}
                
         </tbody>
 </table></>

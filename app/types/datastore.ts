@@ -24,4 +24,5 @@ export type Datastore = {
         "Dachser": number | string,
         "Kommission": number | string,
         "orderdate": number | string,
+        "locked": boolean
 }
