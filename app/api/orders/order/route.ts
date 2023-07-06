@@ -1,4 +1,3 @@
-import { getEntry } from '../../../services/datahandler';
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import { Datastore } from '@/app/types/datastore';
@@ -24,7 +23,7 @@ export async function GET(request: Request) {
   const written = writeFileSync(dataFilePath, JSON.stringify(jsonDataWithLock), 'utf8');
 
   let data = jsonDataWithLock;
-  
+
   const dataset = data.find((entry: Datastore | any) => entry.id === id);
 
  
