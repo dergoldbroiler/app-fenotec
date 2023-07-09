@@ -1,6 +1,6 @@
 import './globals.css'
 // Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 
 

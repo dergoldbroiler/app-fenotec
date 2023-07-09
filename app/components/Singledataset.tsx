@@ -11,6 +11,7 @@ export const Singledataset = ({datasetID}:Number | any) => {
    
 
    const [activeDataset, setActiveDataset] = useState<Datastore>();
+   const [mappedDataset, setMappedDataset] = useState<any>();
 
    useEffect(() => {
     if(!datasetID) return;
@@ -26,7 +27,10 @@ export const Singledataset = ({datasetID}:Number | any) => {
     fetch(fetchURL).then(
         res => res.json()
     ).then(
-        data => setActiveDataset(data)
+        data => {
+            setActiveDataset(data);
+            setMappedDataset(Object.keys(data));
+        }
     )
    }, [datasetID]);
 
@@ -39,7 +43,23 @@ export const Singledataset = ({datasetID}:Number | any) => {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => toggleModal('modal_singledataset','hide',datasetID)}></button>
                     </div>
                     <div className="modal-body">
-                    {JSON.stringify(activeDataset)}
+                        <table className="table table-dark table-striped">
+                            <tbody>
+                        
+                        {
+                          
+                          mappedDataset &&
+                          mappedDataset.map((key: any, index: number) => {
+                                return(
+                                    <tr key={index}>
+                                        <td>{key}</td>
+                                        <td>{mappedDataset[key]}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                            </tbody>
+                        </table>
                     </div>
                     <div className="modal-footer">
                    

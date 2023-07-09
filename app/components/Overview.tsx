@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react'
 
 import { Datastore } from '../types/datastore'
 
-export const Overview = ({datastore, clickHandlerOverview}: Datastore[] | any) => {
+export const Overview = ({datastore, clickHandlerOverview, clickHandlerRefuse}: Datastore[] | any) => {
     
-
 
     if(!datastore) return (<div>loading...</div>)
 
@@ -27,7 +26,7 @@ export const Overview = ({datastore, clickHandlerOverview}: Datastore[] | any) =
 
             if( element.locked === true ) {
                 return(
-                    <tr key={element.id} className="red-border red" onClick={e => clickHandlerOverview(e,element.id, index)}>
+                    <tr key={element.id} className="red-border red" onClick={clickHandlerRefuse}>
                         <td>{element.Versand}</td>
                         <td>WHERE</td>
                         <td>{element.Einbaudatum}</td>
@@ -36,7 +35,7 @@ export const Overview = ({datastore, clickHandlerOverview}: Datastore[] | any) =
                 )
             } else {
                 return(
-                    <tr key={element.id} onClick={e => clickHandlerOverview(e,element.id, index)}>
+                    <tr key={element.id} className="clicktr"  onClick={e => clickHandlerOverview(e,element.id, index)}>
                         <td>{element.Versand}</td>
                         <td>WHERE</td>
                         <td>{element.Einbaudatum}</td>
